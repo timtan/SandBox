@@ -1,4 +1,5 @@
 #define LOGIT
+#define LOG_LEVEL_ 2
 #include "logger.h"
 int main(int argc, const char *argv[])
 {

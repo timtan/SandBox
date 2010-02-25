@@ -1,7 +1,10 @@
 #ifdef LOGIT 
+#ifndef LOG_LEVEL_
+#define LOG_LEVEL_ 100  //level below LOG_LEVEL_ will be loged 
+#endif  
 #include<pthread.h>
 #include<stdarg.h>
-#include <stdio.h>
+#include<stdio.h>
 
 #define RESET		0
 #define BRIGHT 		1
@@ -20,10 +23,14 @@
 #define CYAN		6
 #define	WHITE		7
 
+static
 void textcolor(int attr, int fg, int bg);
 pthread_mutex_t mutex;
 inline 
 void consoleLogger( int level , const char* msg, ... ){
+	if( level > LOG_LEVEL_){
+		return ;
+	}
     va_list vl ;
     va_start(vl, msg);
     FILE * logdevice = stdout;
@@ -48,7 +55,7 @@ int main()
 	return 0;
 }
 **/
-inline 
+inline static 
 void textcolor(int attr, int fg, int bg)
 {	char command[13];
 
